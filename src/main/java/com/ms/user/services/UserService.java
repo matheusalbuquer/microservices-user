@@ -5,7 +5,10 @@ import com.ms.user.models.UserModel;
 import com.ms.user.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -19,6 +22,11 @@ public class UserService {
     @Transactional
     public UserModel save(UserModel userModel){
         return userRepository.save(userModel);
+    }
+
+    @Transactional
+    public List<UserModel> findAll(){
+      return userRepository.findAll();
     }
 
 }
