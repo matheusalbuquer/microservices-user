@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
+import java.rmi.server.UID;
 import java.util.List;
 
 @Service
@@ -27,6 +28,11 @@ public class UserService {
     @Transactional
     public List<UserModel> findAll(){
       return userRepository.findAll();
+    }
+
+    @Transactional
+    public void delete (UserModel user){
+         userRepository.delete(user);
     }
 
 }
