@@ -1,15 +1,13 @@
 package com.ms.user.services;
 
-import com.ms.user.dtos.UserRecordDto;
 import com.ms.user.models.UserModel;
 import com.ms.user.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
-import java.rmi.server.UID;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -31,8 +29,12 @@ public class UserService {
     }
 
     @Transactional
-    public void delete (UserModel user){
-         userRepository.delete(user);
+    public boolean deleteById (UUID id){
+        if(!userRepository.existsById(id)){
+            return false;
+        }
+        userRepository.deleteById(id);
+        return true;
     }
 
 }
