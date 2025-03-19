@@ -16,11 +16,12 @@ public class UserProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    @Value( value = "${broker.queue.email}")
+    @Value( value = "${broker.queue.email.name}")
     private String routingKey;
 
     public void publicMessageEmail(UserModel userModel){
         var emailDto = new EmailDto();
+        emailDto.setUserId(userModel.getUserId());
         emailDto.setEmailTo(userModel.getEmail());
         emailDto.setSubject("Cadastro Realizdo Com Sucesso!");
         emailDto.setText(userModel.getName() + "Seja Bem vindo(a)! Agradecemos o seu cadastro");
