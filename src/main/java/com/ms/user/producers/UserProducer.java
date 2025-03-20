@@ -16,7 +16,7 @@ public class UserProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    @Value( value = "${broker.queue.email.name}")
+    @Value(value = "${broker.queue.email.name}")
     private String routingKey;
 
     public void publicMessageEmail(UserModel userModel){
@@ -24,7 +24,7 @@ public class UserProducer {
         emailDto.setUserId(userModel.getUserId());
         emailDto.setEmailTo(userModel.getEmail());
         emailDto.setSubject("Cadastro Realizdo Com Sucesso!");
-        emailDto.setText(userModel.getName() + "Seja Bem vindo(a)! Agradecemos o seu cadastro");
+        emailDto.setText(userModel.getName() + ", Seja Bem vindo(a)! \nAgradecemos o seu cadastro");
 
         rabbitTemplate.convertAndSend("", routingKey, emailDto);
     }
