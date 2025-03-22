@@ -22,6 +22,14 @@ public class UserModel implements Serializable {
     @Column(nullable = false, unique = true)
     private String email;
 
+    public UserModel(){
+    }
+    public UserModel(UUID userId, String name, String email){
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+    }
+
 
     public UUID getUserId() {
         return userId;
