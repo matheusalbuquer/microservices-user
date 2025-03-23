@@ -31,6 +31,7 @@ public class UserModel implements Serializable {
     }
 
 
+
     public UUID getUserId() {
         return userId;
     }
